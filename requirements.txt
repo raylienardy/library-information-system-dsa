@@ -1,0 +1,4 @@
+# requirements.txt
+passlib        # untuk password hashing (opsional), bisa diganti hashlib
+flask          # optional (jika mau web demo)
+pytest         # testing (opsional)
