@@ -1,0 +1,23 @@
+erDiagram
+    USERS {
+        INTEGER id PK
+        TEXT username
+        TEXT password_hash
+        TEXT role
+    }
+    BOOKS {
+        INTEGER id PK
+        TEXT title
+        TEXT author
+        TEXT tags
+        INTEGER copies
+    }
+    TRANSACTIONS {
+        INTEGER id PK
+        INTEGER user_id FK
+        INTEGER book_id FK
+        TEXT action
+        DATETIME timestamp
+    }
+    USERS ||--o{ TRANSACTIONS : "makes"
+    BOOKS ||--o{ TRANSACTIONS : "involved_in"
