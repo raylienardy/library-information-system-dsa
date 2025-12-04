@@ -48,3 +48,15 @@
 - Semua fitur wajib bisa dijalankan pada mesin developer dengan instruksi di README.
 - Unit tests utama lulus (`python -m pytest -q`).
 - Dokumentasi terisi sesuai template tugas.
+
+## Mapping fitur ↔ Struktur Data (Detail)
+
+| Fitur aplikasi                    | Struktur Data utama               | Alasan / penggunaan                                       |
+| --------------------------------- | --------------------------------- | --------------------------------------------------------- |
+| Indeks katalog berdasarkan judul  | BST (key = title)                 | Traversal inorder → sorted listing; search by range/title |
+| Lookup cepat (id, tags)           | Hash Table (separate chaining)    | Akses O(1) average untuk id / tag → list book ids         |
+| Antrian peminjaman                | Queue                             | FIFO processing request pinjam                            |
+| Undo / riwayat operasi            | Stack                             | Undo terakhir (LIFO)                                      |
+| Rekomendasi co-borrow             | Graph (adjacency list, weighted)  | Node = buku, edge weight = banyak co-borrow               |
+| Top-k analytics (buku terpopuler) | Heap / Partial sort (array utils) | Ambil top-k frekuensi pinjaman                            |
+| Penyimpanan sementara / cache     | Dictionary / HashTable            | Cache lookup, session storage                             |
