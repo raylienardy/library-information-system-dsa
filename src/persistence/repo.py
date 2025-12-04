@@ -117,3 +117,12 @@ class TransactionRepo:
         rows = cur.fetchall()
         conn.close()
         return [Transaction(id=r["id"], user_id=r["user_id"], book_id=r["book_id"], action=r["action"], timestamp=r["timestamp"]) for r in rows]
+      
+    @staticmethod
+    def list_all():
+        conn = get_conn()
+        cur = conn.cursor()
+        cur.execute("SELECT * FROM transactions")
+        rows = cur.fetchall()
+        conn.close()
+        return rows
