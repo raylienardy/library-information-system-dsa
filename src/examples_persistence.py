@@ -21,6 +21,6 @@ if __name__ == "__main__":
     uid = get_or_create_user("demo", "demo123")
     bid = get_or_create_book("Demo Book", "Penulis", ["demo"])
     TransactionRepo.add(uid, bid, "borrow")
-    print("DB:", DB_PATH)
-    print("User demo id:", uid)
-    print("Book id:", bid)
+    Write-Output "DB: "
+    Write-Output "User demo id: "
+    Write-Output "Book id: "
