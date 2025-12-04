@@ -4,15 +4,17 @@ Indexer: membangun indeks in-memory dari DB untuk pencarian cepat.
 - BST: key = title (lowercase), value = list of book ids
 - HashTable: key = tag (lowercase), value = set/list of book ids
 """
+from typing import List
+
 from data_structures.bst import BST
 from data_structures.hashtable import HashTable
 from persistence.repo import BookRepo
-from typing import List, Set
+
 
 class Indexer:
     def __init__(self):
-        self.title_bst = BST()         # key=title_lower -> value=list of ids
-        self.tag_ht = HashTable()      # key=tag_lower -> value=set(ids)
+        self.title_bst = BST()  # key=title_lower -> value=list of ids
+        self.tag_ht = HashTable()  # key=tag_lower -> value=set(ids)
 
     def build(self):
         self.title_bst = BST()

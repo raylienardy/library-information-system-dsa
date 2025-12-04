@@ -1,6 +1,8 @@
 # src/tests/test_queue.py
 import unittest
+
 from data_structures.queue import Queue
+
 
 class TestQueue(unittest.TestCase):
     def test_enqueue_dequeue(self):
@@ -17,6 +19,7 @@ class TestQueue(unittest.TestCase):
         q = Queue()
         with self.assertRaises(IndexError):
             q.dequeue()
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -2,6 +2,7 @@
 from dataclasses import dataclass
 from typing import Optional
 
+
 @dataclass
 class User:
     id: Optional[int]
@@ -18,7 +19,12 @@ class User:
             return None
         try:
             _id = row["id"]
-            return User(id=_id, username=row["username"], password_hash=row["password_hash"], role=row["role"])
+            return User(
+                id=_id,
+                username=row["username"],
+                password_hash=row["password_hash"],
+                role=row["role"],
+            )
         except Exception:
             _id, username, password_hash, role = row
             return User(id=_id, username=username, password_hash=password_hash, role=role)

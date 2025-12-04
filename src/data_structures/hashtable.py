@@ -1,11 +1,13 @@
 # src/data_structures/hashtable.py
-from typing import List, Tuple, Optional, TypeVar, Generic
+from typing import Generic, List, Optional, Tuple, TypeVar
 
 K = TypeVar("K")
 V = TypeVar("V")
 
+
 class HashTable(Generic[K, V]):
     """Simple hash table with separate chaining. Not thread-safe."""
+
     def __init__(self, capacity: int = 101):
         self.capacity = max(3, capacity)
         self.buckets: List[List[Tuple[K, V]]] = [[] for _ in range(self.capacity)]
@@ -60,8 +62,8 @@ class HashTable(Generic[K, V]):
 
     def items(self):
         for bucket in self.buckets:
-            for k,v in bucket:
-                yield (k,v)
+            for k, v in bucket:
+                yield (k, v)
 
     def __repr__(self) -> str:
         items = list(self.items())

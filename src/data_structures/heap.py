@@ -1,6 +1,7 @@
 # src/data_structures/heap.py
 import heapq
-from typing import List, Tuple, Any
+from typing import Any, List, Tuple
+
 
 def top_k_items(pairs: List[Tuple[Any, int]], k: int):
     """

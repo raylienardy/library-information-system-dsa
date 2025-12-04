@@ -1,8 +1,10 @@
 # src/services/recommendation.py
-from data_structures.graph import Graph
-from persistence.repo import TransactionRepo, BookRepo
 from collections import defaultdict
 from typing import List, Tuple
+
+from data_structures.graph import Graph
+from persistence.repo import TransactionRepo
+
 
 def build_coborrow_graph() -> Graph:
     """
@@ -13,10 +15,15 @@ def build_coborrow_graph() -> Graph:
     # gather books per user
     # naive: read all transactions and group by user
     txs_by_user = defaultdict(list)
-    for btx in TransactionRepo.list_all():  # but TransactionRepo.list_all not implemented — we can instead query DB directly
+    for (
+        btx
+    ) in (
+        TransactionRepo.list_all()
+    ):  # but TransactionRepo.list_all not implemented — we can instead query DB directly
         pass
     # fallback: implement below using DB directly
     from persistence.db import get_conn
+
     conn = get_conn()
     cur = conn.cursor()
     cur.execute("SELECT user_id, book_id FROM transactions")
@@ -29,10 +36,12 @@ def build_coborrow_graph() -> Graph:
         unique_books = list(set(borrows))
         n = len(unique_books)
         for i in range(n):
-            for j in range(i+1, n):
-                a = unique_books[i]; b = unique_books[j]
+            for j in range(i + 1, n):
+                a = unique_books[i]
+                b = unique_books[j]
                 g.add_edge(a, b, weight=1.0)
     return g
+
 
 def recommend(book_id: int, k: int = 3) -> List[Tuple[int, float]]:
     """

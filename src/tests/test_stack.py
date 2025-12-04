@@ -1,6 +1,8 @@
 # src/tests/test_stack.py
 import unittest
+
 from data_structures.stack import Stack
+
 
 class TestStack(unittest.TestCase):
     def test_push_pop(self):
@@ -17,6 +19,7 @@ class TestStack(unittest.TestCase):
         s = Stack()
         with self.assertRaises(IndexError):
             s.pop()
+
 
 if __name__ == "__main__":
     unittest.main()

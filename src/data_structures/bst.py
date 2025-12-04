@@ -1,21 +1,24 @@
 # src/data_structures/bst.py
-from typing import Optional, List, Tuple, Generic, TypeVar, Callable
+from typing import Callable, Generic, List, Optional, Tuple, TypeVar
 
 K = TypeVar("K")
 V = TypeVar("V")
+
 
 class BSTNode(Generic[K, V]):
     def __init__(self, key: K, value: V):
         self.key: K = key
         self.value: V = value
-        self.left: Optional['BSTNode[K, V]'] = None
-        self.right: Optional['BSTNode[K, V]'] = None
+        self.left: Optional["BSTNode[K, V]"] = None
+        self.right: Optional["BSTNode[K, V]"] = None
 
     def __repr__(self) -> str:
         return f"BSTNode({self.key}:{self.value})"
 
+
 class BST(Generic[K, V]):
     """Binary Search Tree with insert/find/inorder traversal."""
+
     def __init__(self, cmp: Optional[Callable[[K, K], int]] = None):
         # cmp: optional compare function; default uses built-in ordering
         self.root: Optional[BSTNode[K, V]] = None
@@ -28,7 +31,7 @@ class BST(Generic[K, V]):
         return (a > b) - (a < b)
 
     def insert(self, key: K, value: V) -> None:
-        def _insert(node: Optional[BSTNode[K,V]], key: K, value: V) -> BSTNode[K,V]:
+        def _insert(node: Optional[BSTNode[K, V]], key: K, value: V) -> BSTNode[K, V]:
             if node is None:
                 return BSTNode(key, value)
             if self._compare(key, node.key) < 0:
@@ -38,6 +41,7 @@ class BST(Generic[K, V]):
             else:
                 node.value = value  # update
             return node
+
         self.root = _insert(self.root, key, value)
 
     def find(self, key: K) -> Optional[V]:
@@ -50,13 +54,15 @@ class BST(Generic[K, V]):
         return None
 
     def inorder(self) -> List[Tuple[K, V]]:
-        res: List[Tuple[K,V]] = []
-        def _in(node: Optional[BSTNode[K,V]]):
+        res: List[Tuple[K, V]] = []
+
+        def _in(node: Optional[BSTNode[K, V]]):
             if not node:
                 return
             _in(node.left)
             res.append((node.key, node.value))
             _in(node.right)
+
         _in(self.root)
         return res
 

@@ -1,11 +1,13 @@
 # src/data_structures/queue.py
 from collections import deque
-from typing import Deque, Generic, TypeVar, Optional
+from typing import Deque, Generic, Optional, TypeVar
 
 T = TypeVar("T")
 
+
 class Queue(Generic[T]):
     """FIFO queue using collections.deque."""
+
     def __init__(self) -> None:
         self._dq: Deque[T] = deque()
 

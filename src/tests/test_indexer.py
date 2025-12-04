@@ -1,9 +1,11 @@
 # src/tests/test_indexer.py
 import unittest
+
 from indexer import Indexer
+from models.book import Book
 from persistence.db import init_db
 from persistence.repo import BookRepo
-from models.book import Book
+
 
 class TestIndexer(unittest.TestCase):
     @classmethod
@@ -16,8 +18,9 @@ class TestIndexer(unittest.TestCase):
     def test_build_and_search(self):
         idx = Indexer()
         idx.build()
-        self.assertTrue(len(idx.search_by_title_prefix("Al"))>0)
-        self.assertTrue(len(idx.search_by_tag("x"))>0)
+        self.assertTrue(len(idx.search_by_title_prefix("Al")) > 0)
+        self.assertTrue(len(idx.search_by_tag("x")) > 0)
+
 
 if __name__ == "__main__":
     unittest.main()

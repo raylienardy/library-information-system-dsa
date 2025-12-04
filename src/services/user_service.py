@@ -4,16 +4,18 @@ Service layer ringan untuk operasi user (register + login).
 Menggunakan persistence.repo -> UserRepo dan auth.
 """
 
-from persistence.repo import UserRepo
+from auth import verify_password
 from models.user import User
-from auth import hash_password, verify_password
-from typing import Tuple, Optional
+from persistence.repo import UserRepo
+
 
 class UserExistsError(Exception):
     pass
 
+
 class AuthError(Exception):
     pass
+
 
 def register_user(username: str, password: str, role: str = "user") -> User:
     """
@@ -27,12 +29,13 @@ def register_user(username: str, password: str, role: str = "user") -> User:
     existing = UserRepo.get_by_username(username)
     if existing:
         raise UserExistsError(f"Username '{username}' sudah ada")
-    uid = UserRepo.add(username, password, role)
+    UserRepo.add(username, password, role)
     user = UserRepo.get_by_username(username)
     if not user:
         # sesuatu yang ganjil
         raise Exception("Gagal membuat user baru")
     return user
+
 
 def login_user(username: str, password: str) -> User:
     """

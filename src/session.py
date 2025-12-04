@@ -7,6 +7,7 @@ Jika ingin multi-session / token, bisa dikembangkan.
 
 from typing import Optional
 
+
 class SessionManager:
     def __init__(self):
         self._current_user_id: Optional[int] = None
@@ -28,6 +29,7 @@ class SessionManager:
 
     def get_username(self) -> Optional[str]:
         return self._current_username
+
 
 # singleton instance
 session_manager = SessionManager()

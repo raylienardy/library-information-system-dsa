@@ -1,7 +1,8 @@
 # src/examples_persistence.py
-from persistence.db import init_db, DB_PATH
-from persistence.repo import BookRepo, UserRepo, TransactionRepo
 from models.book import Book
+from persistence.db import DB_PATH, init_db
+from persistence.repo import BookRepo, TransactionRepo, UserRepo
+
 
 def get_or_create_user(username, password):
     u = UserRepo.get_by_username(username)
@@ -9,12 +10,14 @@ def get_or_create_user(username, password):
         return u.id
     return UserRepo.add(username, password)
 
+
 def get_or_create_book(title, author, tags):
     found = BookRepo.search(title)
     for b in found:
         if b.title == title:
             return b.id
     return BookRepo.add(Book(id=None, title=title, author=author, tags=tags, copies=1))
+
 
 if __name__ == "__main__":
     init_db()

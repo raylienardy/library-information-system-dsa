@@ -1,6 +1,8 @@
 # src/tests/test_hashtable.py
 import unittest
+
 from data_structures.hashtable import HashTable
+
 
 class TestHashTable(unittest.TestCase):
     def test_set_get_remove(self):
@@ -13,6 +15,7 @@ class TestHashTable(unittest.TestCase):
         self.assertTrue(ht.remove("a"))
         self.assertFalse(ht.contains("a"))
         self.assertIsNone(ht.get("a"))
+
 
 if __name__ == "__main__":
     unittest.main()

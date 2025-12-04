@@ -1,7 +1,8 @@
 # src/models/book.py
-from dataclasses import dataclass, asdict
-from typing import List, Optional
 import json
+from dataclasses import dataclass
+from typing import List, Optional
+
 
 @dataclass
 class Book:

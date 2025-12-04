@@ -1,10 +1,12 @@
 # src/data_structures/stack.py
-from typing import Generic, TypeVar, List, Optional
+from typing import Generic, List, Optional, TypeVar
 
 T = TypeVar("T")
 
+
 class Stack(Generic[T]):
     """Simple LIFO stack backed by Python list."""
+
     def __init__(self) -> None:
         self._data: List[T] = []
 

@@ -1,9 +1,11 @@
 # src/tests/test_persistence.py
-import unittest
 import os
-from persistence.db import init_db, DB_PATH, get_conn
-from persistence.repo import BookRepo, UserRepo, TransactionRepo
+import unittest
+
 from models.book import Book
+from persistence.db import DB_PATH, init_db
+from persistence.repo import BookRepo, TransactionRepo, UserRepo
+
 
 class TestPersistence(unittest.TestCase):
     @classmethod
@@ -25,7 +27,13 @@ class TestPersistence(unittest.TestCase):
         self.assertFalse(UserRepo.verify_credentials("testuser", "wrong"))
 
     def test_book_crud_search(self):
-        book = Book(id=None, title="Belajar Python", author="Admin", tags=["python","pemrograman"], copies=2)
+        book = Book(
+            id=None,
+            title="Belajar Python",
+            author="Admin",
+            tags=["python", "pemrograman"],
+            copies=2,
+        )
         bid = BookRepo.add(book)
         self.assertIsInstance(bid, int)
         got = BookRepo.get_by_id(bid)
@@ -46,6 +54,7 @@ class TestPersistence(unittest.TestCase):
         self.assertIsInstance(tid, int)
         trans = TransactionRepo.list_for_user(uid)
         self.assertTrue(len(trans) >= 1)
+
 
 if __name__ == "__main__":
     unittest.main()

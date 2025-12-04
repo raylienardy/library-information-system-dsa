@@ -1,16 +1,30 @@
 # src/tests/test_auth_session.py
+import os
 import unittest
-from services.user_service import register_user, login_user, UserExistsError, AuthError
+
+from persistence.db import DB_PATH, init_db
+from services.user_service import AuthError, UserExistsError, login_user, register_user
 from session import session_manager
 
+
 class TestAuthSession(unittest.TestCase):
-    def test_register_and_login(self):
-        # create a unique user for test
-        uname = "test_auto"
+    @classmethod
+    def setUpClass(cls):
+        # ensure fresh DB for tests (optional)
         try:
-            u = register_user(uname, "pw123")
+            if DB_PATH.exists():
+                os.remove(DB_PATH)
+        except Exception:
+            pass
+        init_db()
+
+    def test_register_and_login(self):
+        uname = "test_auto_user"
+        # ensure no prior user
+        try:
+            register_user(uname, "pw123")
         except UserExistsError:
-            # already exists, ignore
+            # if exists, continue
             pass
         user = login_user(uname, "pw123")
         self.assertIsNotNone(user)
