@@ -1,47 +1,108 @@
-# Sistem Informasi Perpustakaan – Struktur Data (UAS)
+# 🔥 REVISED README (VERSI UPGRADE)
 
-Proyek ini adalah aplikasi Sistem Informasi Perpustakaan berbasis Python yang
-menggabungkan _Data Structures_, _SQLite persistence_, dan _GUI Tkinter_ sebagai
-implementasi UAS Mata Kuliah Struktur Data.
+## 📚 Library Information System
 
-## ✨ Fitur Utama
+**Data Structures × SQLite × Tkinter**
 
-- Registrasi & Login (password hashing PBKDF2)
-- Manajemen Buku (CRUD)
-- Pencarian multi-kriteria (title, author, tag)
-- Antrian peminjaman (Queue)
-- Riwayat & Undo transaksi (Stack)
-- Rekomendasi buku berbasis Graph (co-borrow)
-- Penyimpanan data SQLite (users, books, transactions)
-- GUI Tkinter: Login → Dashboard → Kelola Buku → Peminjaman
+A desktop-based Library Information System built with Python, designed to demonstrate practical applications of core data structures in a real-world system.
+
+This project integrates multiple data structures (Stack, Queue, BST, Hash Table, Graph, Heap) with persistent storage (SQLite) and a GUI (Tkinter).
 
 ---
 
-## 📦 Instalasi
+## 🚀 Key Features
 
-### 1. Clone repository
+* **Authentication System**
+
+  * User registration & login
+  * Secure password hashing (PBKDF2)
+
+* **Book Management**
+
+  * Full CRUD operations
+  * Multi-attribute search (title, author, tags)
+
+* **Borrowing System**
+
+  * Queue-based request handling
+  * Transaction tracking
+
+* **Undo System**
+
+  * Stack-based rollback for last transaction
+
+* **Recommendation Engine**
+
+  * Graph-based (co-borrow relationships)
+  * Weighted edges + Top-K using Heap
+
+* **Persistence**
+
+  * SQLite database (users, books, transactions)
+
+* **GUI**
+
+  * Built with Tkinter
+  * Flow: Login → Dashboard → Book Management → Borrowing
+
+---
+
+## 🧠 Data Structures Mapping
+
+| Feature          | Data Structure           |
+| ---------------- | ------------------------ |
+| Title search     | Binary Search Tree (BST) |
+| Tag indexing     | Hash Table               |
+| Borrow queue     | Queue                    |
+| Undo transaction | Stack                    |
+| Recommendations  | Graph (weighted edges)   |
+| Top-K selection  | Heap                     |
+
+---
+
+## 🏗️ System Architecture
+
+```
+GUI (Tkinter)
+    ↓
+Controllers
+    ↓
+Services Layer
+(auth, transaction, recommendation, indexing)
+    ↓
+Models
+(User, Book, Transaction)
+    ↓
+Persistence Layer (SQLite)
+    ↓
+Custom Data Structures
+```
+
+---
+
+## ⚙️ Installation
+
+### 1. Clone Repository
 
 ```bash
-git clone <repository-anda>
+git clone <your-repo-url>
 cd UAS
 ```
 
-````
-
-### 2. Buat virtual environment
+### 2. Setup Virtual Environment
 
 ```bash
 python -m venv .venv
 source .venv/Scripts/activate   # Windows
 ```
 
-### 3. Install dependencies
+### 3. Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. Inisialisasi database
+### 4. Initialize Database
 
 ```bash
 PYTHONPATH=src python - << 'PY'
@@ -50,7 +111,7 @@ init_db()
 PY
 ```
 
-### 5. Jalankan aplikasi
+### 5. Run Application
 
 ```bash
 PYTHONPATH=src python src/main.py
@@ -60,7 +121,7 @@ PYTHONPATH=src python src/main.py
 
 ## 🧪 Testing
 
-Jalankan semua unit test:
+Run all tests:
 
 ```bash
 PYTHONPATH=src pytest -q
@@ -68,249 +129,44 @@ PYTHONPATH=src pytest -q
 
 ---
 
-## 🧱 Struktur Folder
+## 📂 Project Structure
 
 ```
 src/
- ├── data_structures/   # Stack, Queue, BST, HashTable, Graph, Heap
- ├── persistence/       # SQLite + Repository
- ├── models/            # Book, User, Transaction
- ├── services/          # Auth, Transaction, Recommendation, Indexer
- ├── gui/               # Tkinter UI
- ├── controllers/       # Penghubung GUI ↔ services
- ├── tests/             # Unit & integration tests
- └── main.py            # Entry point aplikasi
+├── data_structures/   # Custom implementations
+├── persistence/       # SQLite repositories
+├── models/            # Domain entities
+├── services/          # Business logic
+├── controllers/       # GUI interaction layer
+├── gui/               # Tkinter UI
+├── tests/             # Unit & integration tests
+└── main.py            # Entry point
 ```
 
 ---
 
-## 👨‍💻 Teknologi yang Digunakan
+## 🎯 Design Highlights
 
-- Python 3.x
-- Tkinter GUI
-- SQLite3
-- Data Structures Implementations (manual)
-- pytest (unit test)
-- flake8 (linting)
+* Separation of concerns (MVC-like layering)
+* Manual implementation of core data structures
+* Real-world simulation (queue, undo, recommendation)
+* Testable architecture (services decoupled from GUI)
 
 ---
 
-## 📝 Lisensi
+## 📄 Documentation
 
-Proyek UAS – digunakan untuk keperluan akademik.
-
-```
-
----
-
-# 2️⃣ Buat `dokumentasi_teknis.pdf`
-Aku siapkan **isi lengkapnya**, kamu tinggal copy ke Word/Docs → Save as PDF.
-
-🔽 **ISI LENGKAP DOKUMEN (paste ke Word/Google Docs):**
+* `dokumentasi_teknis.pdf` → System design & architecture
+* `user_manual.pdf` → End-user guide
 
 ---
 
-# **DOKUMENTASI TEKNIS**
-## Sistem Informasi Perpustakaan – Struktur Data
+## ⚠️ Notes
 
-### 1. Pendahuluan
-Proyek ini dibangun sebagai implementasi UAS Mata Kuliah Struktur Data.
-Tujuan proyek adalah mengintegrasikan berbagai struktur data (Stack, Queue, BST,
-HashTable, Graph, Heap) ke dalam sebuah aplikasi perpustakaan nyata dengan
-GUI serta penyimpanan data SQLite.
+This project was originally developed for academic purposes (Data Structures course), but structured to reflect real-world software engineering practices.
 
 ---
 
-## 2. Arsitektur Sistem
+## 📜 License
 
-### **Diagram Arsitektur**
-```
-
-GUI Tkinter
-│
-▼
-Controllers
-│
-Services Layer
-(auth, transaction, recommendation, indexer)
-│
-Models (User, Book, Transaction)
-│
-Persistence (SQLite Repo)
-│
-Data Structures
-(Stack, Queue, BST, HashTable, Graph, Heap)
-
-```
-
----
-
-## 3. Entity Relationship Diagram (ERD)
-
-```
-
-Users (id, username, password_hash, role)
-Books (id, title, author, tags, copies)
-Transactions (id, user_id, book_id, action, timestamp)
-
-````
-
-Relasi:
-
-- One User → Many Transactions
-- One Book → Many Transactions
-
----
-
-## 4. Struktur Data yang Digunakan
-
-| Fitur                | Struktur Data                 |
-| -------------------- | ----------------------------- |
-| Search katalog title | BST                           |
-| Index tag → buku     | HashTable                     |
-| Antrian peminjaman   | Queue                         |
-| Undo transaksi       | Stack                         |
-| Rekomendasi buku     | Graph (co-borrow edge weight) |
-| top-k rekomendasi    | Heap                          |
-
-Penjelasan implementasi terlampir di kode `src/data_structures`.
-
----
-
-### 5. Algoritma Penting
-
-#### 5.1 Pencarian Buku
-
-- BST digunakan untuk index judul → search O(log n)
-- HashTable untuk lookup tag → O(1)
-
-#### 5.2 Peminjaman Buku
-
-- enqueue_request() → Queue
-- process_next() → memproses antrian & mencatat transaksi
-- undo_last() → Stack pop untuk rollback
-
-#### 5.3 Rekomendasi
-
-- Graph adjacency list: book_a ↔ book_b
-- Bobot = jumlah co-borrow
-- recommend(book_id, k) → ambil tetangga berbobot tertinggi
-
----
-
-## 6. Unit Test & Integrasi
-
-- Semua unit test (`pytest`) lulus tanpa error
-- Integration test: register → add book → borrow → undo → rekomendasi
-
----
-
-## 7. Kesimpulan
-
-Aplikasi memenuhi seluruh requirement UAS:
-
-- Memakai ≥ 6 struktur data
-- Ada GUI
-- Ada pencarian, CRUD, transaksi, undo, rekomendasi
-- Ada database persistence
-- Semua diuji (unit + integrasi)
-
----
-
-# 3️⃣ Buat `user_manual.pdf`
-
-Isi berikut tinggal kamu paste ke Word/Docs → Save as PDF.
-
----
-
-# **User Manual – Sistem Informasi Perpustakaan**
-
-## 1. Pembukaan
-
-Manual ini membantu pengguna mengoperasikan aplikasi perpustakaan.
-
----
-
-## 2. Cara Menjalankan Aplikasi
-
-1. Aktifkan virtual environment
-2. Jalankan:
-
-```bash
-PYTHONPATH=src python src/main.py
-```
-
-3. Akan muncul tampilan Login.
-
----
-
-## 3. Registrasi Akun
-
-1. Klik _Register Account_
-2. Masukkan:
-
-   - Username
-   - Password
-
-3. Akun akan tersimpan di database.
-
----
-
-## 4. Login
-
-1. Masukkan username & password
-2. Jika benar → masuk ke Dashboard
-
----
-
-## 5. Dashboard
-
-Menu utama:
-
-- List Buku
-- Cari Buku
-- Tambah Buku
-- Pinjam Buku
-- Undo Peminjaman
-- Rekomendasi
-- Logout
-
----
-
-## 6. Cara Menambah Buku
-
-1. Klik "Tambah Buku"
-2. Isi judul, penulis, tags, jumlah kopi
-3. Klik "Add"
-
----
-
-## 7. Cara Meminjam Buku
-
-1. Pilih buku di daftar
-2. Klik tombol **Pinjam**
-3. Transaksi akan tercatat
-
----
-
-## 8. Undo Peminjaman
-
-Klik tombol _Undo Last Transaction_ → transaksi terakhir dihapus.
-
----
-
-## 9. Rekomendasi Buku
-
-1. Pilih satu buku
-2. Klik "Rekomendasi"
-3. Aplikasi menampilkan buku-buku yang paling sering dipinjam bersama (co-borrow graph)
-
----
-
-## 10. Troubleshooting
-
-- Tidak bisa login → cek password
-- Buku tidak muncul → refresh atau restart aplikasi
-- Antrian kosong → belum ada permintaan peminjaman
-
----
+For academic and educational use.
