@@ -1,4 +1,4 @@
-# 🔥 REVISED README (VERSI UPGRADE)
+# Sistem Informasi Perpustakaan – Struktur Data (UAS)
 
 ## 📚 Library Information System
 
